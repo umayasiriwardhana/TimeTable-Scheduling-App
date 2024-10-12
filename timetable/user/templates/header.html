@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #437c9a;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .navbar .logo img {
+            height: 60px; 
+            width: auto; 
+        }
+
+        .navbar .menu {
+            display: flex;
+            justify-content: center;
+            flex: 1;
+        }
+        .navbar .menu a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Times New Roman', Times, serif;
+            padding: 14px 20px;
+            font-size: larger;
+        }
+        .navbar .menu a:hover {
+            background-color: #000000;
+        }
+
+        /* Hamburger Menu Styles */
+        .navbar .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .navbar .menu-toggle div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 3px 0;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+            .navbar .logo {
+                flex: 1;
+            }
+            .navbar .menu-toggle {
+                display: flex;
+            }
+            .navbar .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+            .navbar .menu.active {
+                display: flex;
+            }
+            .navbar .menu a {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="logo">
+            <img src="{% static 'images/sltc.png' %}" alt="Logo">
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="menu" id="navbarMenu">
+            <a href="{% url 'home' %}">Home</a>
+                {% if user.is_student %}
+                    <a href="{% url 'student_dashboard' %}">Dashboard</a>
+                {% elif user.is_lecturer %}
+                    <a href="{% url 'lecturer_dashboard' %}">Dashboard</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                {% endif %}
+            <a href="https://sltc.ac.lk/about/">About</a>
+            <a href="https://sltc.ac.lk/contact/">Contact</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            var menu = document.getElementById('navbarMenu');
+            if (menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            } else {
+                menu.classList.add('active');
+            }
+        });
+    </script>
+
+</body>
+</html>

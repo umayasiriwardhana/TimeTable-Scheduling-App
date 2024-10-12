@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLTC University Timetable System</title>
+    <link rel="icon" href="{% static 'images/ico.png' %}" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> <!-- FontAwesome for icons -->
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-wrapper {
+            padding-left: 70px;
+            padding-right: 70px;
+            padding-top: 70px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: sans-serif;
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        h2 {
+            font-family: sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #000000;
+        }
+
+        h5 {
+            padding-top: 8px;
+            font-weight: bold;
+        }
+
+        .lead {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 40px;
+        }
+
+
+        .btn-dark-custom {
+            background-color: #343a40;
+            color: white;
+            border: none;
+            padding: 8px 25px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 8px;
+        }
+
+        .btn-dark-custom:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: #437c9a;
+        }
+
+        .card-custom {
+            background-color: #e9f6fd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            .lead {
+                font-size: 1rem;
+            }
+
+            .btn-custom {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+
+            .blue-box h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {% include "header.html" %}
+
+    <div class="container content-wrapper">
+        <div>
+            <h1>Automated Timetable System</h1>
+            <p class="lead">Effectively organize class schedules, maximize resource utilization, and simplify the academic planning process to ensure smooth coordination between students, lecturers, and administrative staff.</p>
+
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card card-custom text-center">
+                        <div class="card-body">
+                            <i class="fa-solid fa-user-graduate card-icon"></i>
+                            <h5 class="card-title">Student / Lecturer Login</h5>
+                            <p class="card-text">Access your personalized dashboard for schedule management.</p>
+                            <a href="{% url 'login' %}" class="btn btn-dark-custom btn-custom">Login</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card card-custom text-center">
+                        <div class="card-body">
+                            <i class="fa-solid fa-user-shield card-icon"></i>
+                            <h5 class="card-title">Admin Login</h5>
+                            <p class="card-text">Manage schedules, resources, and academic information from the admin dashboard.</p>
+                            <a href="{% url 'admin:index' %}" class="btn btn-dark-custom btn-custom">Login</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card card-custom text-center">
+                        <div class="card-body">
+                            <i class="fa-solid fa-user-plus card-icon"></i>
+                            <h5 class="card-title">Register as Student</h5>
+                            <p class="card-text">Sign up to gain access to all schedules and maintain your timetable.</p>
+                            <a href="{% url 'student_signup' %}" class="btn btn-dark-custom btn-custom">Register</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {% include "footer.html" %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
